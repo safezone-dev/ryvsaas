@@ -1,10 +1,7 @@
 import { supabase } from "@/lib/supabase";
 
 export default async function CustomersPage() {
-  const { data: customers } = await supabase
-    .from("customers")
-    .select("*")
-    .order("balance", { ascending: false });
+  const customers = [];
 
   return (
     <div>
