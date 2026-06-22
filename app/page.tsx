@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase_old";
 
 export default function Home() {
   useEffect(() => {

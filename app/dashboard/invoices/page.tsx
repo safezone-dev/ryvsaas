@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase_old";
 
 export default async function InvoicesPage() {
   const { data: invoices } = await supabase

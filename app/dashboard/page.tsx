@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase_old";
 
 async function getDashboardData() {
   const { data: summary } = await supabase
