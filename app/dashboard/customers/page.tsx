@@ -1,7 +1,13 @@
 import { supabase } from "@/lib/supabase";
 
 export default async function CustomersPage() {
-  const customers = [];
+  const customers: {
+    id: string;
+    display_name: string;
+    balance: number;
+    invoice_count: number;
+    last_payment_date: string;
+  }[] = [];
 
   return (
     <div>
