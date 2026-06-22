@@ -16,28 +16,31 @@ export default function LoginPage() {
   const [loading, setLoading] =
     useState(false);
 
-  async function handleLogin(
-    e: React.FormEvent
-  ) {
-    e.preventDefault();
-
-    setLoading(true);
-
-    const { error } =
-      await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-    setLoading(false);
-
-    if (error) {
-      alert(error.message);
-      return;
+    async function handleLogin(
+      e: React.FormEvent
+    ) {
+      e.preventDefault();
+    
+      setLoading(true);
+    
+      const { data, error } =
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+    
+      console.log("DATA:", data);
+      console.log("ERROR:", error);
+    
+      setLoading(false);
+    
+      if (error) {
+        alert(error.message);
+        return;
+      }
+    
+      router.push("/dashboard");
     }
-
-    router.push("/dashboard");
-  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-100">
