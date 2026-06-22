@@ -1,5 +1,3 @@
-import { supabase } from "@/lib/supabase_old";
-
 export default async function CustomersPage() {
   const customers: {
     id: string;
