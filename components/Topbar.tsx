@@ -2,6 +2,15 @@
 
 import { Menu, Bell, UserCircle2 } from "lucide-react";
 import { useSidebar } from "@/components/SidebarContext";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
+
+const router = useRouter();
+
+async function handleLogout() {
+  await supabase.auth.signOut();
+  router.push("/login");
+}
 
 export default function Topbar() {
   const { setMobileOpen } = useSidebar();
@@ -37,19 +46,24 @@ export default function Topbar() {
 
       <div className="flex items-center gap-4">
 
-        <div className="hidden lg:block text-sm text-slate-500">
-          QuickBooks Online
-        </div>
+  <div className="hidden md:block text-right">
+    <p className="text-sm font-semibold text-slate-700">
+      Wil Edward
+    </p>
 
-        <button className="p-2 rounded-lg hover:bg-slate-100">
-          <Bell size={20} className="text-slate-500" />
-        </button>
+    <p className="text-xs text-slate-500">
+      Administrador
+    </p>
+  </div>
 
-        <button className="p-2 rounded-lg hover:bg-slate-100">
-          <UserCircle2 size={24} className="text-slate-600" />
-        </button>
+  <button
+    onClick={handleLogout}
+    className="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600"
+  >
+    Salir
+  </button>
 
-      </div>
+</div>
 
     </header>
   );
