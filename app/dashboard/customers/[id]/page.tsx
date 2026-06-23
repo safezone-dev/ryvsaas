@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
 export default async function CustomerPage({
   params,
@@ -226,6 +227,26 @@ export default async function CustomerPage({
                     )}
 
                   </td>
+
+                  <td className="p-4 text-center">
+
+  <Link
+    href={`/dashboard/invoices/${invoice.id}`}
+    className="
+      bg-[#0B3A6E]
+      hover:bg-[#082d56]
+      text-white
+      px-3
+      py-2
+      rounded-lg
+      text-xs
+      font-medium
+    "
+  >
+    Ver
+  </Link>
+
+</td>
 
                 </tr>
 
