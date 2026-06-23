@@ -1,69 +1,40 @@
+import { supabase } from "@/lib/supabase";
+import CustomersTable from "@/components/CustomersTable";
+
+async function getCustomers() {
+  const { data, error } = await supabase
+    .from("customers")
+    .select("*")
+    .order("display_name");
+
+  if (error) {
+    console.error(error);
+    return [];
+  }
+
+  return data || [];
+}
+
 export default async function CustomersPage() {
-  const customers: {
-    id: string;
-    display_name: string;
-    balance: number;
-    invoice_count: number;
-    last_payment_date: string;
-  }[] = [];
+  const customers = await getCustomers();
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">
-        Clientes
-      </h1>
+    <div className="space-y-6">
 
-      <div className="bg-white rounded-xl shadow overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-slate-100">
-            <tr>
-              <th className="text-left p-4">
-                Cliente
-              </th>
+      <div>
+        <h1 className="text-2xl font-bold text-slate-800">
+          Clientes
+        </h1>
 
-              <th className="text-left p-4">
-                Saldo
-              </th>
-
-              <th className="text-left p-4">
-                Facturas
-              </th>
-
-              <th className="text-left p-4">
-                Último Pago
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {customers?.map((customer) => (
-              <tr
-                key={customer.id}
-                className="border-t"
-              >
-                <td className="p-4">
-                  {customer.display_name}
-                </td>
-
-                <td className="p-4">
-                  $
-                  {Number(
-                    customer.balance
-                  ).toLocaleString()}
-                </td>
-
-                <td className="p-4">
-                  {customer.invoice_count}
-                </td>
-
-                <td className="p-4">
-                  {customer.last_payment_date}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <p className="text-sm text-slate-500">
+          Gestión de cuentas por cobrar
+        </p>
       </div>
+
+      <CustomersTable
+        customers={customers}
+      />
+
     </div>
   );
 }

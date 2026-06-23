@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import EditUserModal from "@/components/EditUserModal";
+import DeleteUserButton from "@/components/DeleteUserButton";
 
 type User = {
   id: string;
@@ -107,8 +108,16 @@ export default function UsersTable({
                     )}
                   </td>
 
-                  <td className="px-5 py-4 text-center">
-  <EditUserModal user={user} />
+                  <td className="px-5 py-4">
+  <div className="flex justify-center gap-2">
+
+    <EditUserModal user={user} />
+
+    <DeleteUserButton
+      id={user.id}
+    />
+
+  </div>
 </td>
 
                 </tr>
